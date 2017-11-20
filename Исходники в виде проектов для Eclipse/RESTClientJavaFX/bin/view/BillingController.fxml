@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane minHeight="462.0" minWidth="667.0" prefHeight="462.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BillingController">
+   <top>
+      <StackPane>
+         <children>
+            <AnchorPane>
+               <children>
+                  <VBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Детальное состояние по счету">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Для выполнения перевода и поиска счета, нажмите на кнопку &quot;Перевод&quot;" textAlignment="CENTER" wrappingWidth="300.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children></AnchorPane>
+            <VBox fx:id="newBillingBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" style="-fx-background-color: c3e186; -fx-background-radius: 20;" visible="false" BorderPane.alignment="CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Перевести на счет" textAlignment="CENTER" wrappingWidth="500.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="50.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Пожалуйста, заполните все поля для перевода на другой счет" textAlignment="CENTER" wrappingWidth="500.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="60.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fx:id="errorText" fill="#ff0202" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="500.0" />
+                  <HBox maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label text="Номер счета:">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="searchBox" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#changeField" prefWidth="120.0" promptText="поиск" />
+                        <Label text="Сумма (целое число)">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="accountSummField" maxWidth="50.0" promptText="1000" HBox.hgrow="ALWAYS" />
+                        <Label text="Описание">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="accountDescField" maxWidth="1.7976931348623157E308" prefWidth="81.0" promptText="На десерт" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#addBilling" text="Отправить" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
+            </VBox>
+         </children>
+      </StackPane>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#backButton" text="Назад" />
+            <Separator prefWidth="200.0" visible="false" HBox.hgrow="ALWAYS" />
+            <Button fx:id="addBillingButton" mnemonicParsing="false" onAction="#showAddBilling" text="Перевод" />
+            <Button mnemonicParsing="false" text="Выбрать" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <TabPane>
+         <tabs>
+            <Tab closable="false" text="Выписка по отправке">
+               <content>
+                  <AnchorPane fx:id="listViewAnchorOut" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="667.0" BorderPane.alignment="CENTER" />
+               </content>
+            </Tab>
+            <Tab closable="false" text="Выписка по получению">
+               <content>
+                  <AnchorPane fx:id="listViewAnchorInput" minHeight="-Infinity" minWidth="-Infinity" prefHeight="281.0" prefWidth="667.0" BorderPane.alignment="CENTER" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
